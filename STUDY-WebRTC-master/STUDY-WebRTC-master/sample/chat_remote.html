@@ -1,0 +1,116 @@
+<html>
+    <head>
+        remote
+        <style>
+            #chatBox {
+                position: absolute;
+                top: 10%;
+                left: calc(50% - 200px);
+                padding: 20px;
+                width: 400px;a
+                height: 300px;
+                border: 1px solid gray;
+                box-sizing: border-box;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                font-weight: bold;
+                color: white;
+                background-color: #4CAF50;
+                border: none;
+                cursor: pointer;
+                box-sizing: border-box;
+            }
+            button[disabled] {
+                background-color: white;
+                color: gray;
+                font-weight: normal;
+                border: solid 1px gray;
+            }
+            #chatTextArea{
+                margin: 20px 0;
+                width: 100%;
+                height: 140px;
+                resize: none;
+            }
+
+            #chatInputText{
+                width: 100%;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="chatBox">
+            <button id="step2" onclick="step2(event)">STEP2</button>
+            <textarea id="chatTextArea" disabled></textarea>
+            <input id="chatInputText" type="text" onkeypress="sendMessage(event)" disabled/>
+        </div>
+        <script>
+            navigator.mediaDevices.getUserMedia({'audio':true});
+            var remotePeer = new RTCPeerConnection({'iceServers': [{'urls': 'stun:stun.l.google.com:19302'}]});
+            var localDataChannel;
+            remotePeer.onicecandidate = function(e) {
+                if(e.candidate == null){
+					url = 'http://localhost:8080/signaling/user?' + new URLSearchParams()
+                    config = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name:'remote', 
+                            localDescription: JSON.stringify(remotePeer.localDescription), 
+                            status: 'STEP2'
+                        })
+                    }
+                    fetch(url, config)
+                        .then((res) => {
+                            console.log(res)
+                            document.getElementById('step2').innerText = 'STEP2 END'
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                            document.getElementById('step2').innerText = 'STEP2 FAIL'
+                        })
+				}
+            }
+            remotePeer.ondatachannel = function(e) {
+                document.getElementById('chatInputText').removeAttribute('disabled')
+                localDataChannel = e.channel
+                e.channel.onmessage = function(msg) {
+                    document.getElementById('chatTextArea').value += msg.data + '\n'
+                }
+            } 
+
+            function step2(event) {
+                event.target.setAttribute('disabled', true);
+                event.target.innerText = 'doing STEP2...';
+
+                url = 'http://localhost:8080/signaling/user?' + new URLSearchParams({name: 'local'})
+                config = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                }
+                fetch(url, config)
+                    .then((res) => res.json())
+                    .then((res) => remotePeer.setRemoteDescription(new RTCSessionDescription(JSON.parse(res.localDescription))))
+                    .then(() => remotePeer.createAnswer())
+                    .then((ans) => remotePeer.setLocalDescription(ans))
+                    .catch(e => console.log(e));
+            }
+
+            function sendMessage(event) {
+                if (event.keyCode === 13) {
+                    localDataChannel.send('[remote] ' + event.target.value)
+                    document.getElementById('chatTextArea').value += '[remote] ' + event.target.value + '\n'
+                    event.target.value = ''
+                }
+            }
+        </script>
+    </body>
+</html>

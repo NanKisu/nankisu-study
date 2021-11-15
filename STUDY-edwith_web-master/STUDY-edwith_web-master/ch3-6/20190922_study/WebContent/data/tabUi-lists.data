@@ -1,0 +1,16 @@
+{
+	"lists": [
+		{
+			"name": "SDS",
+			"text": "SDS"
+		},
+		{
+			"name": "Kakao",		
+			"text": "Kakao"
+		},
+		{
+			"name": "Naver",
+			"text": "Naver"
+		}
+	]
+}

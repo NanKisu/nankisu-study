@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD:7-2) Spring Web MVC - Static Resources, Locale/ect/.settings/org.eclipse.wst.common.component
+    <wb-module deploy-name="ect">
+=======
+    <wb-module deploy-name="common">
+>>>>>>> eface8c398bbccb6f9876514fba16a7e6a448dea:7-2) Spring Web MVC - Filter, Interceptor, ControllerAdvice, ArgumentResolver/common/.settings/org.eclipse.wst.common.component
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD:7-2) Spring Web MVC - Static Resources, Locale/ect/.settings/org.eclipse.wst.common.component
+        <property name="context-root" value="ect"/>
+        <property name="java-output-path" value="/ect/target/classes"/>
+=======
+        <property name="context-root" value="common"/>
+        <property name="java-output-path" value="/common/target/classes"/>
+>>>>>>> eface8c398bbccb6f9876514fba16a7e6a448dea:7-2) Spring Web MVC - Filter, Interceptor, ControllerAdvice, ArgumentResolver/common/.settings/org.eclipse.wst.common.component
+    </wb-module>
+</project-modules>

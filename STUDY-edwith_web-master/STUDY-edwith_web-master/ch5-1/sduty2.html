@@ -1,0 +1,90 @@
+<html>
+    <header>
+        <style>
+            h2 {
+                text-align: center
+            }
+            h2,h4 {
+                margin: 0px;
+            }
+            .tab {
+                width: 800px;
+                margin: 0px auto;
+            }
+            .tabmenu {
+                background-color: bisque;
+            }
+            .tabmenu>div {
+                display: inline-block;
+                width: 146px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .content {
+                padding: 5%;
+                background-color: antiquewhite;
+            }
+        </style>
+    </header>
+
+    <body>
+        <h2> TAB UI TEST</h2>
+
+        <div class="tab">
+            <div class="tabmenu">
+                <div>crong</div>
+                <div>jk</div>
+                <div>pobi</div>
+                <div>honux</div>
+            </div>
+            <section class="content">
+                <h4>hello jk</h4>
+                <p>golf, facebook</p>
+            </section>
+        </div>
+        <script>
+            function Tab(tabElement) {
+                this.tabmenu = tabElement;
+                this.registerEvents();
+            }
+            Tab.prototype = {
+                registerEvents: function () {
+                    this.tabmenu.addEventListener("click", function (evt) {
+                        this.sendAjax("./json.txt", evt.target.innerText);
+                    }.bind(this));
+                },
+                sendAjax: function (url, clickedName) {
+                    var oReq = new XMLHttpRequest();
+                    oReq.addEventListener("load", function () {
+                        var data = JSON.parse(oReq.responseText);
+                        this.makeTemplate(data, clickedName);
+                    }.bind(this));
+                    oReq.open("GET", url);
+                    oReq.send();
+                },
+                makeTemplate: function (data, clickedName) {
+                    var html = document.getElementById("tabcontent").innerHTML;
+                    var resultHTML = "";
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].name === clickedName) {
+                            resultHTML = html.replace("{name}", data[i].name)
+                                .replace("{favorites}", data[i].favorites.join(" "));
+                            break;
+                        }
+                    }
+                    document.querySelector(".content").innerHTML = resultHTML
+                }
+            }
+            var tabmenu = document.querySelector(".tabmenu");
+            var o = new Tab(tabmenu);
+        </script>
+
+        <script id="tabcontent" type="my-template">
+                <h4>hello {name}</h4>
+                <p>{favorites}</p>
+        </script>
+    </body>
+
+</html>

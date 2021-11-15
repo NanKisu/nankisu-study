@@ -1,0 +1,16 @@
+h1{
+    display: block;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    margin-top: -45px;
+    margin-left: -200px;
+    padding: 20px;
+    height: 90px;
+    width: 450px;
+    color: white;
+    font-weight: bold;
+    background: #999;
+    text-align: center;
+    box-sizing: border-box;
+}

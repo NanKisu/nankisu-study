@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'kr.co.bunnyfoot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
+	implementation "io.springfox:springfox-boot-starter:3.0.0"
+	implementation group: 'com.google.api-client', name: 'google-api-client-gson', version: '1.31.3'
+    compile "io.springfox:springfox-swagger-ui:3.0.0"
+	compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	compile 'com.google.apis:google-api-services-analyticsreporting:v4-rev20210106-1.31.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports { 
+		mavenBom 'org.springframework.cloud:spring-cloud-aws:2.2.1.RELEASE' 
+		mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Greenwich.RELEASE'
+	} 
+}
+
+
+test {
+	useJUnitPlatform()
+}

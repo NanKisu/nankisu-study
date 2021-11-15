@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Vuejs Start</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="item in items" :key="item.name">
+                    {{item.name}}의 개수 : <input type="number" v-model="item.quantity" min="0"/>
+                </li>
+            </ul>
+            <hr/>
+            <div>
+                <ul>
+                    <li v-for="item in items" :key="item.name">
+                        {{item.name}}: {{item.price}} x {{item.quantity}} = {{item.price * item.quantity | numberWithDelimiter}}
+                    </li>
+                </ul>
+                <p>소계: {{totalPrice | numberWithDelimiter}}</p>
+                <p>합계: {{totalPriceWithTax | numberWithDelimiter}}</p>
+                <p v-show="!canBuy">
+                    {{1000 | numberWithDelimiter}}원 이상부터 구매 가능
+                </p>
+                <button @click="doBuy" :disabled="!canBuy">구매</button>
+            </div>
+        </div>
+        <script>
+            var items = [
+                {
+                    name: '연필',
+                    price: 300,
+                    quantity: 0
+                },
+                {
+                    name: '공책',
+                    price: 400,
+                    quantity: 0
+                },
+                {
+                    name: '지우개',
+                    price: 500,
+                    quantity: 0
+                }                
+            ]
+            new Vue({
+                el: '#app',
+                data: {
+                    items: items
+                },
+                filters: {
+                    numberWithDelimiter: function(number){
+                        if(!number)
+                            return '0'
+                        return number.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+                    }
+                },
+                methods: {
+                    doBuy: function(){
+                        alert(this.totalPriceWithTax + '원 판매')
+                        this.items.forEach(item => {
+                            item.quantity = 0
+                        });
+                    }
+                },
+                computed: {
+                    totalPrice: function(){
+                        return this.items.reduce(function(prePrice, curItem){
+                            return prePrice + curItem.price * curItem.quantity
+                        }, 0)
+                    },
+                    totalPriceWithTax: function(){
+                        return Math.floor(this.totalPrice * 1.1)
+                    },
+                    canBuy: function(){
+                        return this.totalPrice >= 1000
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

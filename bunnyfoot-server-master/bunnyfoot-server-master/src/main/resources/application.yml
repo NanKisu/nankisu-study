@@ -1,0 +1,134 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+cloud: 
+  aws: 
+    s3: 
+      bucket: bunnyfoot-s3 
+    region: 
+      static: ap-northeast-2
+    stack: 
+      auto: false 
+    credentials: 
+      instanceProfile: true
+      accessKey: ${S3_ACCESS_KEY} 
+      secretKey: ${S3_SECRET_KEY}
+
+slack.welcome: ${SLACK_WELCOME}
+slack.error: ${SLACK_ERROR}
+
+question:
+    question:
+        1:
+            trueScore:
+                DODO: -5
+                INSSA: 5
+                AGYO: 6
+                SUNDING: 0
+            falseScore:
+                DODO: 5
+                INSSA: -5
+                AGYO: -6
+                SUNDING: 0
+        2:
+            trueScore:
+                DODO: 10
+                INSSA: -9
+                AGYO: -4
+                SUNDING: 0
+            falseScore:
+                DODO: -10
+                INSSA: 9
+                AGYO: 4
+                SUNDING: 0
+        3:
+            trueScore:
+                DODO: -10
+                INSSA: 0
+                AGYO: 4
+                SUNDING: 9
+            falseScore:
+                DODO: 10
+                INSSA: 0
+                AGYO: -4
+                SUNDING: -9
+        4:
+            trueScore:
+                DODO: 0
+                INSSA: -9
+                AGYO: 0
+                SUNDING: 4
+            falseScore:
+                DODO: 0
+                INSSA: 9
+                AGYO: 0
+                SUNDING: -4
+        5:
+            trueScore:
+                DODO: 4
+                INSSA: 8
+                AGYO: 0
+                SUNDING: 0
+            falseScore:
+                DODO: -4
+                INSSA: -8
+                AGYO: 0
+                SUNDING: 0
+        6:
+            trueScore:
+                DODO: -10
+                INSSA: 10
+                AGYO: 4
+                SUNDING: 0
+            falseScore:
+                DODO: 10
+                INSSA: -10
+                AGYO: -4
+                SUNDING: 0
+        7:
+            trueScore:
+                DODO: 3
+                INSSA: -5
+                AGYO: 0
+                SUNDING: -8
+            falseScore:
+                DODO: -3
+                INSSA: 5
+                AGYO: 0
+                SUNDING: 8
+        8:
+            trueScore:
+                DODO: 7
+                INSSA: 0
+                AGYO: -4
+                SUNDING: -10
+            falseScore:
+                DODO: -7
+                INSSA: 0
+                AGYO: 4
+                SUNDING: 10
+        9:
+            trueScore:
+                DODO: -8
+                INSSA: 5
+                AGYO: 8
+                SUNDING: 9
+            falseScore:
+                DODO: 8
+                INSSA: -5
+                AGYO: -8
+                SUNDING: -9
+        10:
+            trueScore:
+                DODO: -3
+                INSSA: 0
+                AGYO: 0
+                SUNDING: 8
+            falseScore:
+                DODO: 3
+                INSSA: 0
+                AGYO: 0
+                SUNDING: -8

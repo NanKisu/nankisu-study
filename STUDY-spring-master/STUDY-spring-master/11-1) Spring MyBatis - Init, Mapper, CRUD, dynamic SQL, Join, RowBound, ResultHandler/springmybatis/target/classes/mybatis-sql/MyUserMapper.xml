@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.spring.springmybatis.mapper.MyUserMapper">
+	<resultMap id="MyUserResultMap" type="MyUser">
+		<id column="user_id" property="id"/>
+		<result column="user_name" property="name"/>
+		<result column="user_age" property="age"/>
+		<collection column="user_gender"  property="gender" javaType="UserGender" select="findGenderByGenderId"/>
+	</resultMap>
+	<resultMap id="MyUserJoinResultMap" type="MyUser">
+		<id column="user_id" property="id"/>
+		<result column="user_name" property="name"/>
+		<result column="user_age" property="age"/>
+		<collection property="gender" javaType="UserGender">
+			<result column="gender_id" property="id"/>
+			<result column="gender_name" property="name"/>
+		</collection>
+	</resultMap>
+	<resultMap id="UserGenderResultMap" type="UserGender">
+		<id column="gender_id" property="id"/>
+		<result column="gender_name" property="name"/>
+	</resultMap>
+	
+	<select id="findGenderByGenderId" parameterType="Integer" resultMap="UserGenderResultMap">
+		SELECT
+			gender_id,
+			gender_name
+		FROM
+			USERGENDER
+		WHERE
+			gender_id = #{genderId}
+	</select>
+	
+	<insert id="create" parameterType="MyUser" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			MyUser(
+				user_name,
+				user_age
+			)
+		VALUES (
+			#{name},
+			#{age}
+		)
+	</insert>	
+	
+	<select id="findById" parameterType="Integer" resultMap="MyUserResultMap">
+		SELECT
+			user_id,
+			user_name,
+			user_age,
+			user_gender
+		FROM
+			MyUser
+		WHERE 
+			user_id = #{id}
+	</select>
+	<select id="findJoinById" parameterType="Integer" resultMap="MyUserJoinResultMap">
+		SELECT
+			user_id,
+			user_name,
+			user_age,
+			gender_id,
+			gender_name
+		FROM
+			MyUser
+			LEFT OUTER JOIN UserGender
+				ON user_gender = gender_id
+		WHERE 
+			user_id = #{id}
+	</select>
+	<select id="findAll" resultMap="MyUserResultMap">
+		SELECT
+			user_id,
+			user_name,
+			user_age,
+			user_gender
+		FROM
+			MyUser
+	</select>
+	<select id="findByCriteria" parameterType="MyUserCriteria" resultMap="MyUserResultMap">
+		SELECT 
+			user_id,
+			user_name,
+			user_age,
+			user_gender
+		FROM
+			MyUser
+		<where>
+			<if test="name != null">
+				AND user_name 
+				<choose>
+					<when test="isLike == true">
+						like
+					</when>
+					<otherwise>
+						=
+					</otherwise>
+				</choose>
+				#{name}
+			</if>
+			<if test="age != null">
+				AND user_age 
+				<choose>
+					<when test="isLike == true">
+						like
+					</when>
+					<otherwise>
+						=
+					</otherwise>
+				</choose>
+				#{age}
+			</if>
+		</where>
+	</select>
+	<select id="count" resultType="_long">
+		SELECT
+			count(*)
+		FROM
+		 	MyUSer
+	</select>
+	
+	<update id="update" parameterType="MyUser">
+		UPDATE 
+			MyUser
+		<set>
+			<if test="name != null">
+				user_name = #{name},
+			</if>
+			<if test="age != null">
+				user_age = #{age},
+			</if>
+		</set>
+		WHERE 
+			user_id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM
+			MyUser
+		WHERE
+			user_id = #{id}
+	</delete>
+</mapper>

@@ -1,0 +1,42 @@
+<html>
+    <head>
+        local
+    </head>
+    <body>
+        <script>
+            localStorage.setItem('remoteSession', '');
+            localStorage.setItem('localSession', '');
+
+            var localPeer = new RTCPeerConnection();
+            localPeer.onicecandidate = function(e) {
+                console.log('onicecandidate')
+                if(e.candidate != null){
+                    localStorage.setItem('localCandidate', JSON.stringify(e.candidate))
+                }
+            }
+
+            var localDataChannel = localPeer.createDataChannel('localDataChannel');
+            localDataChannel.onopen = function() {
+                console.log('onopen')
+                localDataChannel.send('hello~')
+            }
+
+            function step1() {
+                localPeer.createOffer()
+                    .then((localSession) => localPeer.setLocalDescription(localSession))
+                    .then(() => localStorage.setItem('localSession', JSON.stringify(localPeer.localDescription)))
+                    .catch(e => console.log(e));
+                console.log("step1 END");
+            }
+
+            function step3() {
+                console.log(localStorage.getItem('remoteSession'))
+                localPeer.setRemoteDescription(new RTCSessionDescription(JSON.parse(localStorage.getItem('remoteSession'))))
+
+                obj = JSON.parse(localStorage.getItem('remoteCandidate'))
+                localPeer.addIceCandidate(new RTCIceCandidate(obj))
+                console.log("step3 END");
+            }
+        </script>
+    </body>
+</html>

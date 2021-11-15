@@ -1,0 +1,111 @@
+question:
+  1:
+    0:
+        DODO: -5
+        INSSA: 5
+        AGYO: 6
+        SUNDING: 0
+    1:
+        DODO: 5
+        INSSA: -5
+        AGYO: -6
+        SUNDING: 0
+  2:
+    0:
+        DODO: 10
+        INSSA: -9
+        AGYO: -4
+        SUNDING: 0
+    1:
+        DODO: -10
+        INSSA: 9
+        AGYO: 4
+        SUNDING: 0
+  3:
+    0:
+        DODO: -10
+        INSSA: 0
+        AGYO: 4
+        SUNDING: 9
+    1:
+        DODO: 10
+        INSSA: 0
+        AGYO: -4
+        SUNDING: -9
+  4:
+    0:
+        DODO: 0
+        INSSA: -9
+        AGYO: 0
+        SUNDING: 4
+    1:
+        DODO: 0
+        INSSA: 9
+        AGYO: 0
+        SUNDING: -4
+  5:
+    0:
+        DODO: 4
+        INSSA: 8
+        AGYO: 0
+        SUNDING: 0
+    1:
+        DODO: -4
+        INSSA: -8
+        AGYO: 0
+        SUNDING: 0
+  6:
+    0:
+        DODO: -10
+        INSSA: 10
+        AGYO: 4
+        SUNDING: 0
+    1:
+        DODO: 10
+        INSSA: -10
+        AGYO: -4
+        SUNDING: 0
+  7:
+    0:
+        DODO: 3
+        INSSA: -5
+        AGYO: 0
+        SUNDING: -8
+    1:
+        DODO: -3
+        INSSA: 5
+        AGYO: 0
+        SUNDING: 8
+  8:
+    0:
+        DODO: 7
+        INSSA: 0
+        AGYO: -4
+        SUNDING: -10
+    1:
+        DODO: -7
+        INSSA: 0
+        AGYO: 4
+        SUNDING: 10
+  9:
+    0:
+        DODO: -8
+        INSSA: 5
+        AGYO: 8
+        SUNDING: 9
+    1:
+        DODO: 8
+        INSSA: -5
+        AGYO: -8
+        SUNDING: -9
+  10:
+    0:
+        DODO: -3
+        INSSA: 0
+        AGYO: 0
+        SUNDING: 8
+    1:
+        DODO: 3
+        INSSA: 0
+        AGYO: 0
+        SUNDING: -8

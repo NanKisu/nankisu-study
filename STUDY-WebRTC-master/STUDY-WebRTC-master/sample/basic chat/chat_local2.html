@@ -1,0 +1,103 @@
+<html>
+    <head>
+        local
+        <style>
+            #chatBox {
+                position: absolute;
+                top: 10%;
+                left: calc(50% - 200px);
+                padding: 20px;
+                width: 400px;
+                height: 300px;
+                border: 1px solid gray;
+                box-sizing: border-box;
+            }
+
+            button {
+                width: 170px;
+                padding: 10px;
+                font-weight: bold;
+                color: white;
+                background-color: #4CAF50;
+                border: none;
+                cursor: pointer;
+                box-sizing: border-box;
+            }
+            button[disabled] {
+                background-color: white;
+                color: gray;
+                font-weight: normal;
+                border: solid 1px gray;
+            }
+            #step1 {
+                float: left;
+            }
+            #step2 {
+                float: right;
+            }
+
+            #chatTextArea{
+                margin: 20px 0;
+                width: 100%;
+                height: 140px;
+                resize: none;
+            }
+
+            #chatInputText{
+                width: 100%;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="chatBox">
+            <button id="step1" onclick="step1(event)">STEP1</button>
+            <button id="step2" onclick="step3(event)" disabled>STEP3</button>
+            <textarea id="chatTextArea" disabled></textarea>
+            <input id="chatInputText" type="text" onkeypress="sendMessage(event)" disabled/>
+        </div>
+        <script>
+            navigator.mediaDevices.getUserMedia({'audio':true});
+            var localPeer = new RTCPeerConnection({'iceServers': [{'urls': 'stun:stun.l.google.com:19302'}]});
+            localPeer.onicecandidate = function(e) {
+                if(e.candidate != null){
+                    console.log(e.candidate)
+                }
+				else{
+					localStorage.setItem('localSession', JSON.stringify(localPeer.localDescription))
+				}
+            }
+
+            var localDataChannel = localPeer.createDataChannel('localDataChannel');
+            localDataChannel.onopen = function() {
+                document.getElementById('chatInputText').removeAttribute('disabled')
+            }
+            localDataChannel.onmessage = function(msg) {
+                document.getElementById('chatTextArea').value += msg.data + '\n'
+            }
+
+            function step1(event) {
+                event.target.setAttribute('disabled', true);
+                localPeer.createOffer()
+                    .then((localSession) => localPeer.setLocalDescription(localSession))
+                    .then(() => document.getElementById('step2').removeAttribute('disabled'))
+                    .catch(e => event.target.removeAttrivute('disabled'));
+                
+            }
+
+            function step3(event) {
+                event.target.setAttribute('disabled', true);
+                localPeer.setRemoteDescription(new RTCSessionDescription(JSON.parse(localStorage.getItem('remoteSession'))))
+                    .catch((e) => event.target.removeAttrivute('disabled'))
+            }
+
+            function sendMessage(event) {
+                if (event.keyCode === 13) {
+                    localDataChannel.send('[local] ' + event.target.value)
+                    document.getElementById('chatTextArea').value += '[local] ' + event.target.value + '\n'
+                    event.target.value = ''
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        remote
+    </head>
+    <body>
+        <script>
+            localStorage.setItem('remoteSession', '');
+            localStorage.setItem('localSession', '');
+
+            var remotePeer = new RTCPeerConnection();
+            remotePeer.onicecandidate = function(e) {
+                console.log('onicecandidate')
+                if(e.candidate != null){
+                    localStorage.setItem('remoteCandidate', JSON.stringify(e.candidate))
+                }
+            }
+            remotePeer.ondatachannel = function(e) {
+                console.log('ondatachannel')
+                e.channel.onmessage = function(msg) {
+                    console.log(msg)
+                }
+            } 
+
+            function step2() {
+                remotePeer.setRemoteDescription(JSON.parse(localStorage.getItem('localSession')))
+                    .then(() => remotePeer.createAnswer())
+                    .then((remoteSession) => remotePeer.setLocalDescription(remoteSession))
+                    .then(() => localStorage.setItem('remoteSession', JSON.stringify(remotePeer.localDescription)))
+                    .catch(e => console.log(e));
+
+                obj = JSON.parse(localStorage.getItem('localCandidate'))
+                remotePeer.addIceCandidate(new RTCIceCandidate(obj))
+                console.log('step2 END');
+            }
+        </script>
+    </body>
+</html>

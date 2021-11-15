@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Vuejs Start</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <span :class="{over: isOver30}" v-on:click="showPersonInfo(person)">
+                현재    : {{person.name}}({{person.age | showAge}}) 
+                <span v-for="job in person.jobs"> {{job}} </span>
+            </span>
+            <br/>
+            <span v-if="!isOver30" @click="showPersonInfo(person)">
+                3년후   : {{person.name}}({{threeYearsAfterAge | showAge}}) 
+                <span v-for="(job,index) in person.jobs" :key="index"> {{index}} {{job}} </span>
+            </span>
+            <br/>
+            <button onclick="afterOneYear()" :disabled="isOver30">1년후</button>
+        </div>
+        <script>
+            function afterOneYear(){
+                person.age = person.age + 1
+            }
+            var person = {
+                name: '이기수',
+                age: 27,
+                jobs: ['개발자', '사업가', '파워블로거']
+
+            }
+            var vm = new Vue({
+                data: {
+                    person: person,
+                    isOver30: false
+                },
+                filters: {
+                    showAge: function (age) {
+                        return age + '살'
+                    }
+                },
+                computed: {
+                    threeYearsAfterAge: function (){
+                        return this.person.age + 3    
+                    }
+                },
+                methods= {
+                    showPersonInfo: function (person){
+                        alert(person.name)
+                    }
+                }
+            }).$mount('#app')
+
+            vm.$watch(function(){
+                return this.person.age
+            }, function(toData, beforeData){
+                alert('to ' + toData + ' from ' + beforeData)
+                if(toData >= 30){
+                    this.isOver30 = true
+                }
+            })
+        </script>
+    </body>
+</html>

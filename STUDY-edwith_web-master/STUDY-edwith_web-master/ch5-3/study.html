@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>study</title>
+        <link rel="stylesheet" href="./study.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h2>[ Join My Website ]</h2>
+            <form id="myform" action="" method="post">
+                <div class="input_container">
+                    <span>Email</span> <input type="text" name="email"/>
+                </div>
+                <div class="input_container">
+                    <span>Password</span> <input type="password" name="password"/>
+                </div>
+                <div class="submit_container">
+                    <input id="sendbtn" type="submit" name="Submit" value="Submit"/>
+                </div>
+            </form>
+        </div>
+        <script>
+            var btn = document.querySelector('#sendbtn');
+            btn.addEventListener('click', function(event){
+                event.preventDefault();
+                var emailValue = document.querySelector('#myform input[name=email]').value;
+                var reg_for_email = /^\w+@\w+\.\w+$/;
+                var valid = reg_for_email.test(emailValue);
+                if(valid){
+                    document.querySelector('#myform').submit();
+                }
+                else{
+                    alert('올바르지 않은 이메일 입니다');
+                }
+            })
+        </script>
+    </body>
+</html>
