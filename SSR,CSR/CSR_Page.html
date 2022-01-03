@@ -1,0 +1,16 @@
+<html>
+<header>
+    <title>CSR Page</title>
+</header>
+
+<body>
+</body>
+<script>
+    let parser = new DOMParser();
+    let spanHtml = '<span>This is CSR Page</span>';
+    let parsedHtml = parser.parseFromString(spanHtml, "text/html")
+    let spanTag = parsedHtml.querySelector('span')
+    document.body.appendChild(spanTag);
+</script>
+
+</html>
