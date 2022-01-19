@@ -17,6 +17,21 @@ public class NounService {
 	@Autowired
 	private PlatformTransactionManager txManager;
 	
+	public void taskA() {
+	    Account account = dao.selectById(0).get(0);
+	    account.setBalance(account.getBalance() - 100);
+	    dao.update(account);
+	    account.setBalance(account.getBalance() - 100);
+	    dao.update(account);
+	    account.setBalance(account.getBalance() - 100);
+	    dao.update(account);
+	  }
+
+	  public void taskB() {
+	    Account account = dao.selectById(0).get(0);
+	    System.out.println(account.getBalance());
+	  }
+	
 	@Transactional
 	public void test() {
 		int a;

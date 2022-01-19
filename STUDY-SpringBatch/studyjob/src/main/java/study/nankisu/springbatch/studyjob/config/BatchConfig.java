@@ -1,6 +1,9 @@
 package study.nankisu.springbatch.studyjob.config;
 
+import java.util.Map;
+
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -29,6 +32,9 @@ public class BatchConfig {
 		return stepBuilderFactory.get("step1")
 				.tasklet((contribution, chunkContext) -> {
 					System.out.println("step1");
+					JobParameters jobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
+					System.out.println(jobParameters);
+					System.out.println(jobParameters.getDate("runDate").hashCode());
 					return RepeatStatus.FINISHED;
 				})
 				.build();
@@ -39,6 +45,9 @@ public class BatchConfig {
 		return stepBuilderFactory.get("step2")
 				.tasklet((contribution, chunkContext) -> {
 					System.out.println("step2");
+					Map jobParameters = chunkContext.getStepContext().getJobParameters();
+					System.out.println(jobParameters);
+					System.out.println(jobParameters.get("runDate").hashCode());
 					return RepeatStatus.FINISHED;
 				})
 				.build();

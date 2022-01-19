@@ -10,9 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.study.springjdbc.config.AppContext;
-import com.study.springjdbc.dao.Noun001DAO;
-import com.study.springjdbc.service.NounService;
-import com.study.springjdbc.vo.Noun001;
+import com.study.springjdbc.service.AccountService;
 
 /**
  * Hello world!
@@ -20,29 +18,51 @@ import com.study.springjdbc.vo.Noun001;
  */
 public class App 
 {
-    public static void main( String[] args ) throws Exception
-    {
-    	ApplicationContext context = new AnnotationConfigApplicationContext(AppContext.class);
-//    	Noun001DAO dao = context.getBean(Noun001DAO.class);
-//    	
-//    	System.out.println(dao.selectAll());
-//    	
-//    	Noun001 noun = new Noun001();
-//    	noun.setSysC("001");
-//    	noun.setValue("멍멍이");
-//    	Integer id = dao.insert(noun);
-//    	
-//    	System.out.println(dao.selectById(id));
-//    	
-//    	dao.updateById(id, "고양이");
-//
-//    	System.out.println(dao.selectAll());
-//    	
-//    	dao.deleteById(id);
-//    	
-//    	System.out.println(dao.selectAll());
-    	
-    	NounService service = context.getBean(NounService.class);
-    	service.test3();
-    }
+	  public static void main(String[] args) throws Exception {
+		    ApplicationContext context = new AnnotationConfigApplicationContext(AppContext.class);
+		    final AccountService accountService = context.getBean(AccountService.class);
+		    Thread t1 = new Thread() {
+		      public void run() {
+		        for (int i = 0; i < 10000; i++) {
+		          accountService.taskA();
+		        }
+		      }
+		    };
+		    Thread t2 = new Thread() {
+		      public void run() {
+		        for (int i = 0; i < 10000; i++) {
+					accountService.taskA();
+		        }
+		      }
+		    };
+		    Thread t3 = new Thread() {
+		    	public void run() {
+		    		for (int i = 0; i < 10000; i++) {
+		    			try {
+							accountService.taskB();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    		}
+		    	}
+		    };
+		    Thread t4 = new Thread() {
+		    	public void run() {
+		    		for (int i = 0; i < 10000; i++) {
+		    			try {
+							accountService.taskB();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		    		}
+		    	}
+		    };
+
+		    t1.start();
+		    t2.start();
+		    t3.start();
+		    t4.start();
+		  }
 }
