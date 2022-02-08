@@ -1,6 +1,5 @@
 package study.nankisu.springbatch.studyjob.config;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.batch.core.Job;
@@ -15,15 +14,14 @@ import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
-public class JobRunner implements ApplicationRunner{
+public class JobRunner implements ApplicationRunner {
 	private final Job job;
 	private final JobLauncher jobLauncher;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		JobParameters jobParameters = new JobParametersBuilder()
-			.addString("name", "nankisu")
-			.addDate("runDate", new Date())
+			.addString("name", "nankisu2")
 			.addLong("age", 29L)
 			.addDouble("weight", 68.5)
 			.toJobParameters();

@@ -34,7 +34,6 @@ public class BatchConfig {
 					System.out.println("step1");
 					JobParameters jobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
 					System.out.println(jobParameters);
-					System.out.println(jobParameters.getDate("runDate").hashCode());
 					return RepeatStatus.FINISHED;
 				})
 				.build();
@@ -47,7 +46,7 @@ public class BatchConfig {
 					System.out.println("step2");
 					Map jobParameters = chunkContext.getStepContext().getJobParameters();
 					System.out.println(jobParameters);
-					System.out.println(jobParameters.get("runDate").hashCode());
+//					throw new Exception("error");
 					return RepeatStatus.FINISHED;
 				})
 				.build();
