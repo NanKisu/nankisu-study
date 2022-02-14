@@ -1,0 +1,15 @@
+spring:
+  batch:
+    job:
+      names: myJob1
+      enabled: true
+    jdbc:
+      table-prefix: batch_
+      initialize-schema: ALWAYS
+      schema: mySchema.sql
+      platform: mariadb
+      
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver    url: jdbc:mariadb://127.0.0.1:3307/test
+    username: root
+    password: ${LOCAL_MARIADB_PASSWORD}
