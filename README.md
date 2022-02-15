@@ -40,3 +40,6 @@
  - 3-1) 스프링 MVC 기초 (https://nankisu.tistory.com/24)
  - 3-2) 스프링 MVC 핸들러(Handler) (https://nankisu.tistory.com/46)
  - 3-3) 스프링 입력값 검사 (https://nankisu.tistory.com/47)
+
+### CORS
+ - 교차 출처 리소스 공유 (CORS) : 개발자라면 한번은 보았던 것 (https://nankisu.tistory.com/70)
