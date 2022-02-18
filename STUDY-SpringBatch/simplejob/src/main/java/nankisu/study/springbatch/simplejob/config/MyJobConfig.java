@@ -3,10 +3,12 @@ package nankisu.study.springbatch.simplejob.config;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import nankisu.study.springbatch.simplejob.vaildator.MyJobValidator;
 
 @Component
 @RequiredArgsConstructor
@@ -20,6 +22,8 @@ public class MyJobConfig {
 		return jobBuilderFactory.get("myJob1")
 				.start(myStep1)
 				.next(myStep2)
+				.validator(new MyJobValidator())
+				//.validator(new DefaultJobParametersValidator(new String[]{"name"}, new String[]{"age"}))
 				.build();
 	}
 }
