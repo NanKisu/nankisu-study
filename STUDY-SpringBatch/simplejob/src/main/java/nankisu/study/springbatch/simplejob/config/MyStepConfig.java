@@ -26,7 +26,8 @@ public class MyStepConfig {
 	public Step myStep2() {
 		return stepBuilderFactory.get("myStep2")
 				.tasklet((contribution, context) -> {
-					return RepeatStatus.FINISHED;
+					throw new Exception();
+//					return RepeatStatus.FINISHED;
 				})
 				.build();
 	}

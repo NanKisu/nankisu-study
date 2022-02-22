@@ -24,6 +24,7 @@ public class MyJobConfig {
 				.next(myStep2)
 				.validator(new MyJobValidator())
 				//.validator(new DefaultJobParametersValidator(new String[]{"name"}, new String[]{"age"}))
+				.preventRestart()
 				.build();
 	}
 }
