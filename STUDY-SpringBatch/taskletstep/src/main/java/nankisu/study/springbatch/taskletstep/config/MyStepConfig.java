@@ -1,6 +1,5 @@
 package nankisu.study.springbatch.taskletstep.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,11 +9,7 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
@@ -63,5 +58,36 @@ public class MyStepConfig {
 				})
 				.build();
 				
+	}
+	
+	@Bean
+	public Step myStep1() {
+		return stepBuilderFactory.get("myStep1")
+				.tasklet(new Tasklet() {
+					@Override
+					public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+						// TODO Auto-generated method stub
+						System.out.println("myStep1 runnig...");
+						return RepeatStatus.FINISHED;
+					}
+				})
+				.allowStartIfComplete(true)
+				.build();
+	}
+	
+	@Bean
+	public Step myStep2() {
+		return stepBuilderFactory.get("myStep2")
+				.tasklet(new Tasklet() {
+					@Override
+					public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+						// TODO Auto-generated method stub
+						System.out.println("myStep2 runnig...");
+						return RepeatStatus.FINISHED;
+					}
+				})
+				.allowStartIfComplete(true)
+				.startLimit(3)
+				.build();
 	}
 }
