@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class MyFlowJob1Config {
 	private final JobBuilderFactory jobBuilderFactory;
