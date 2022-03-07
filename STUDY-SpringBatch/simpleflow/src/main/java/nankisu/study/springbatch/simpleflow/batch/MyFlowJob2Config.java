@@ -1,7 +1,5 @@
 package nankisu.study.springbatch.simpleflow.batch;
 
-import java.util.Random;
-
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -16,81 +14,63 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.RequiredArgsConstructor;
 
-//@Configuration
+@Configuration
 @RequiredArgsConstructor
-public class MyFlowJob1Config {
+public class MyFlowJob2Config {
 	private final JobBuilderFactory jobBuilderFactory;
 	private final StepBuilderFactory stepBuilderFactory;
 	
 	@Bean
-	public Job myFlowJob1() {
-		return jobBuilderFactory.get("myFlowJob1")
-				.start(myFlow1())
-				.next(myStep4())
+	public Job myFlowJob2() {
+		return jobBuilderFactory.get("myFlowJob2")
+				.start(myTryFlow())
+				.next(myFinallyStep())
 				.end()
 				.incrementer(new RunIdIncrementer())
 				.build();
 	}
 	
 	@Bean
-	public Flow myFlow1() {
-		FlowBuilder<Flow> flowBuilder = new FlowBuilder<Flow>("myFlow1");
+	public Flow myTryFlow() {
+		FlowBuilder<Flow> flowBuilder = new FlowBuilder<Flow>("myTryFlow");
 		return flowBuilder
-				.start(myStep1())
-					.on(ExitStatus.COMPLETED.getExitCode())
-					.to(myStep2())
-				.from(myStep1())
+				.start(myFirstStep())
 					.on(ExitStatus.FAILED.getExitCode())
-					.to(myStep3())
+					.to(myAfterThrowStep())
+				.from(myFirstStep())
+					.on("*")
+					.end()
 				.end();
 	}
 	
 	@Bean
-	public Step myStep1() {
-		return stepBuilderFactory.get("myStep1")
+	public Step myFirstStep() {
+		return stepBuilderFactory.get("myFirstStep")
 				.tasklet((contribution, context) -> {
-					System.out.println("myStep1 running...");
-					Integer ran = new Random(System.currentTimeMillis()).nextInt();
-					System.out.println(ran);
-					if(ran%2 == 1) {
-						throw new Exception("Odd Exception!");
-					}
+					System.out.println("myFirstStep running...");
+//					throw new Exception("FAIL");
 					return RepeatStatus.FINISHED;
 				})
 				.build();
-				
 	}
 	
 	@Bean
-	public Step myStep2() {
-		return stepBuilderFactory.get("myStep2")
+	public Step myAfterThrowStep() {
+		return stepBuilderFactory.get("myAfterThrowStep")
 				.tasklet((contribution, context) -> {
-					System.out.println("myStep2 running...");
+					System.out.println("myAfterThrowStep running...");
 					return RepeatStatus.FINISHED;
 				})
 				.build();
-		
 	}
 	
 	@Bean
-	public Step myStep3() {
-		return stepBuilderFactory.get("myStep3")
+	public Step myFinallyStep() {
+		return stepBuilderFactory.get("myFinallyStep")
 				.tasklet((contribution, context) -> {
-					System.out.println("myStep3 running...");
+					System.out.println("myFinallyStep running...");
 					return RepeatStatus.FINISHED;
 				})
 				.build();
-		
-	}
-	
-	@Bean
-	public Step myStep4() {
-		return stepBuilderFactory.get("myStep4")
-				.tasklet((contribution, context) -> {
-					System.out.println("myStep4 running...");
-					return RepeatStatus.FINISHED;
-				})
-				.build();
-		
 	}
 }
