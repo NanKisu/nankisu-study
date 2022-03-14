@@ -25,7 +25,7 @@ public class MyChunkJobConfig {
 	public Job customerJob1() {
 		return jobBuilderFactory.get("customerJob1")
 				.start(customerChunkStep())
-				.incrementer(new RunIdIncrementer())
+				//.incrementer(new RunIdIncrementer())
 				.build();
 	}
 
