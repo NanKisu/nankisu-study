@@ -39,7 +39,7 @@ public class CustomerReadJobConfig {
 	@Bean
 	public Job customerReadJob2() {
 		return jobBuilderFactory.get("customerReadJob2")
-				.start(customerReadStep())
+				.start(customerReadStep2())
 				.incrementer(new RunIdIncrementer())
 				.build();
 	}
@@ -79,8 +79,9 @@ public class CustomerReadJobConfig {
 				.resource(new ClassPathResource("/customers.csv"))
 				.linesToSkip(1)
 				//.delimited().delimiter(",").names("name", "age")
-				.fixedLength().addColumns(new Range(1, 6)).addColumns(new Range(8, 9)).names("name", "age")
+				.fixedLength().addColumns(new Range(1, 6)).addColumns(new Range(8, 9)).strict(false).names("name", "age")
 				.fieldSetMapper(new BeanWrapperFieldSetMapper<CustomerVo>())
+				.targetType(CustomerVo.class)
 				.build();
 	}
 }
