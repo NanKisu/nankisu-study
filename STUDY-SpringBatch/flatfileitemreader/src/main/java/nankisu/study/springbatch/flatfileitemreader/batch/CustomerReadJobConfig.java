@@ -13,6 +13,7 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.file.transform.Range;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -77,8 +78,8 @@ public class CustomerReadJobConfig {
 		return new FlatFileItemReaderBuilder<CustomerVo>().name("customerFlatFileItemReader2")
 				.resource(new ClassPathResource("/customers.csv"))
 				.linesToSkip(1)
-				.delimited().delimiter(",")
-				.names("name", "age")
+				//.delimited().delimiter(",").names("name", "age")
+				.fixedLength().addColumns(new Range(1, 6)).addColumns(new Range(8, 9)).names("name", "age")
 				.fieldSetMapper(new BeanWrapperFieldSetMapper<CustomerVo>())
 				.build();
 	}
