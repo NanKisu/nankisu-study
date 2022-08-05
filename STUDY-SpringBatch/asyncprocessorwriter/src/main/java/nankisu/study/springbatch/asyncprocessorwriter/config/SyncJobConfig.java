@@ -1,7 +1,5 @@
 package nankisu.study.springbatch.asyncprocessorwriter.config;
 
-import java.util.concurrent.Future;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -17,29 +15,29 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-public class AsyncJobConfig {
+public class SyncJobConfig {
 	private final JobBuilderFactory jobBuilderFactory;
 	private final StepBuilderFactory stepBuilderFactory;
 	private final ItemReader<Integer> syncItemReader;
-	private final ItemProcessor<Integer, Future<String>> asyncItemProcessor;
-	private final ItemWriter<Future<String>> asyncItemWriter;
+	private final ItemProcessor<Integer, String> syncItemProcessor;
+	private final ItemWriter<String> syncItemWriter;
 	
 	@Bean
-	public Job asyncJob() {
-		return jobBuilderFactory.get("asyncJob")
-				.start(asyncStep())
+	public Job syncJob() {
+		return jobBuilderFactory.get("syncJob")
+				.start(syncStep())
 				.incrementer(new RunIdIncrementer())
 				.listener(new MyJobExcutionListener())
 				.build();
 	}
 	
 	@Bean
-	public Step asyncStep() {
-		return stepBuilderFactory.get("asyncStep")
-				.<Integer, Future<String>>chunk(100)
+	public Step syncStep() {
+		return stepBuilderFactory.get("syncStep")
+				.<Integer, String>chunk(100)
 				.reader(syncItemReader)
-				.processor(asyncItemProcessor)
-				.writer(asyncItemWriter)
+				.processor(syncItemProcessor)
+				.writer(syncItemWriter)
 				.build();
 	}
 }
