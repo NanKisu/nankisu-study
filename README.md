@@ -44,3 +44,6 @@
 
 ### CORS
  - 교차 출처 리소스 공유 (CORS) : 개발자라면 한번은 보았던 것 (https://nankisu.tistory.com/70)
+
+### 이펙티브 자바(Effective JAVA)
+ - 2-1) 생성자 대신 정적 팩토리 메소드를 고려하라. (https://nankisu.tistory.com/87)
