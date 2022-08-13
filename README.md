@@ -44,3 +44,11 @@
 
 ### CORS
  - 교차 출처 리소스 공유 (CORS) : 개발자라면 한번은 보았던 것 (https://nankisu.tistory.com/70)
+
+### 이펙티브 자바(Effective JAVA)
+ - 2-1) 생성자 대신 정적 팩토리 메소드를 고려하라. (https://nankisu.tistory.com/87)
+ - 2-2) 생성자에 매개변수가 많다면 빌더를 고려하라 (https://nankisu.tistory.com/88)
+ - 2-3) private 생성자나 열거 타입(enum)으로 싱글톤을 보장하라 (https://nankisu.tistory.com/89)
+ - 2-4) 인스턴스화를 막으려거든 private 생성자를 사용하라 (https://nankisu.tistory.com/90)
+ - 2-5) 자원을 직접 명시하지 말고 의존 객체 주입을 사용하라 (https://nankisu.tistory.com/91)
+ - 2-6) 불필요한 객체 생성을 피하라 (https://nankisu.tistory.com/92)
