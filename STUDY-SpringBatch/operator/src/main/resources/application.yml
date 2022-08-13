@@ -1,0 +1,7 @@
+spring:
+  batch:    job:      enabled: false
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/test
+    username: root
+    password: ${LOCAL_MARIADB_PASSWORD}
