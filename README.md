@@ -55,3 +55,8 @@
  - 2-7) 다 쓴 객체 참조를 해제하라 (https://nankisu.tistory.com/95)
  - 2-8) finalizer와 cleaner 사용을 피하라 (https://nankisu.tistory.com/96)
  - 2-9) try-finally 보다는 try-with-resources를 사용하라 (https://nankisu.tistory.com/97)
+ - 3-1) equals는 일반 규약을 지켜서 재정의하라 (https://nankisu.tistory.com/99)
+ - 3-2) equals를 재정의 하려면 hashCode도 재정의하라 (https://nankisu.tistory.com/100)
+ - 3-3) toString을 재정의 하라 (https://nankisu.tistory.com/101)
+ - 3-4) clone 재정의는 주의해서 진행하라 (https://nankisu.tistory.com/102)
+ - 3-5) Comparable을 구현할지 고려하라 (https://nankisu.tistory.com/103)
