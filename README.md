@@ -60,3 +60,7 @@
  - 3-3) toString을 재정의 하라 (https://nankisu.tistory.com/101)
  - 3-4) clone 재정의는 주의해서 진행하라 (https://nankisu.tistory.com/102)
  - 3-5) Comparable을 구현할지 고려하라 (https://nankisu.tistory.com/103)
+ - 4-1) 클래스와 멤버의 접근 권한을 최소화하라 (https://nankisu.tistory.com/104)
+ - 4-2) public 클래스에서는 public 필드가 아닌 접근자 메소드를 사용하라 (https://nankisu.tistory.com/105)
+ - 4-3) 변경 가능성을 최소화하라 (https://nankisu.tistory.com/106)
+ - 4-4) 상속보다는 컴포지션을 사용하라 (https://nankisu.tistory.com/107)
