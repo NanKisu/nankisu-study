@@ -64,3 +64,4 @@
  - 4-2) public 클래스에서는 public 필드가 아닌 접근자 메소드를 사용하라 (https://nankisu.tistory.com/105)
  - 4-3) 변경 가능성을 최소화하라 (https://nankisu.tistory.com/106)
  - 4-4) 상속보다는 컴포지션을 사용하라 (https://nankisu.tistory.com/107)
+ - 4-6) 추상 클래스보다는 인터페이스를 우선하라 (https://nankisu.tistory.com/111)
