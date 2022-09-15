@@ -1,12 +1,7 @@
-### Vue.js
-
 ### 스프링 배치(Spring Batch)
 - 스프링 배치: Hello World Spring Batch (https://nankisu.tistory.com/66)
 - 스프링 배치: 배치 테이블 스키마 (https://nankisu.tistory.com/66)
 - 스프링 배치: Job, JobParameter, JobInstance, JobExecution (https://nankisu.tistory.com/69)
-
-### CSR/SSR
- - CSR 시대의 동적 크롤링 with Selenium (https://nankisu.tistory.com/65)
 
 ### 오픈뱅킹 API
  - [오픈뱅킹 API] 0. 오픈뱅킹 API란 (https://nankisu.tistory.com/41)
@@ -16,16 +11,10 @@
  - BBTI - 토끼 성향 테스트 (https://nankisu.tistory.com/50)
  - BBTI - 토끼 성향 테스트 Lite ver (https://nankisu.tistory.com/55)
 
-### WebRTC
- - 채팅을 위한 노력의 역사 그리고 WebRTC (https://nankisu.tistory.com/62)
-
 ### 알고리즘
  - [알고리즘] SW Expert Academy 10032. 과자 분배 (https://nankisu.tistory.com/23)
  - [알고리즘] SW Expert Academy 10033. 카드 뒤집기 (https://nankisu.tistory.com/25)
  - [알고리즘] SW Expert Academy 10806. 수 만들기 (https://nankisu.tistory.com/38)
-
-### JAVA 버전별 특징
- - Java 8 ~ 11 버젼별 특징 (https://nankisu.tistory.com/58)
  
 ### 스프링 철저입문
  - 1-1) 스프링 의존성 주입(DI), 제어의 역전(IoC) (https://nankisu.tistory.com/2)
@@ -41,9 +30,6 @@
  - 3-1) 스프링 MVC 기초 (https://nankisu.tistory.com/24)
  - 3-2) 스프링 MVC 핸들러(Handler) (https://nankisu.tistory.com/46)
  - 3-3) 스프링 입력값 검사 (https://nankisu.tistory.com/47)
-
-### CORS
- - 교차 출처 리소스 공유 (CORS) : 개발자라면 한번은 보았던 것 (https://nankisu.tistory.com/70)
 
 ### 이펙티브 자바(Effective JAVA)
  - 2-1) 생성자 대신 정적 팩토리 메소드를 고려하라. (https://nankisu.tistory.com/87)
@@ -67,3 +53,10 @@
  - 4-6) 추상 클래스보다는 인터페이스를 우선하라 (https://nankisu.tistory.com/111)
  - 4-7) 인터페이스는 구현하는 쪽을 생각해 설계하라 (https://nankisu.tistory.com/115)
  - 4-8) 인터페이스는 타입을 정의하는 용도로만 사용하라 (https://nankisu.tistory.com/119)
+
+
+### 기타
+ - Java 8 ~ 11 버젼별 특징 (https://nankisu.tistory.com/58)
+ - 채팅을 위한 노력의 역사 그리고 WebRTC (https://nankisu.tistory.com/62)
+ - CSR 시대의 동적 크롤링 with Selenium (https://nankisu.tistory.com/65)
+ - 교차 출처 리소스 공유 (CORS) : 개발자라면 한번은 보았던 것 (https://nankisu.tistory.com/70)
