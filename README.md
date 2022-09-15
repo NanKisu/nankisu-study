@@ -66,3 +66,4 @@
  - 4-4) 상속보다는 컴포지션을 사용하라 (https://nankisu.tistory.com/107)
  - 4-6) 추상 클래스보다는 인터페이스를 우선하라 (https://nankisu.tistory.com/111)
  - 4-7) 인터페이스는 구현하는 쪽을 생각해 설계하라 (https://nankisu.tistory.com/115)
+ - 4-8) 인터페이스는 타입을 정의하는 용도로만 사용하라 (https://nankisu.tistory.com/119)
