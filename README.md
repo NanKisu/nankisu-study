@@ -53,6 +53,8 @@
  - 4-6) 추상 클래스보다는 인터페이스를 우선하라 (https://nankisu.tistory.com/111)
  - 4-7) 인터페이스는 구현하는 쪽을 생각해 설계하라 (https://nankisu.tistory.com/115)
  - 4-8) 인터페이스는 타입을 정의하는 용도로만 사용하라 (https://nankisu.tistory.com/119)
+ - 4-9) 태그 달린 클래스보다는 클래스 계층구조를 활용하라 (https://nankisu.tistory.com/120)
+ - 4-10) 멤버 클래스는 되도록 static으로 만들어라 (https://nankisu.tistory.com/121)
 
 
 ### 기타
