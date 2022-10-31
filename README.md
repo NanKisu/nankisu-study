@@ -55,7 +55,12 @@
  - 4-8) 인터페이스는 타입을 정의하는 용도로만 사용하라 (https://nankisu.tistory.com/119)
  - 4-9) 태그 달린 클래스보다는 클래스 계층구조를 활용하라 (https://nankisu.tistory.com/120)
  - 4-10) 멤버 클래스는 되도록 static으로 만들어라 (https://nankisu.tistory.com/121)
- - 5-1) 제네릭 클래스의 raw type은 사용하지 마라 (https://nankisu.tistory.com/122)
+ - 5-2) 비검사 경고를 제거하라 (https://nankisu.tistory.com/126)
+ - 5-3) 배열보다는 리스트를 사용하라 (https://nankisu.tistory.com/127)
+ - 5-4) 이왕이면 제네릭 타입으로 만들라 (https://nankisu.tistory.com/129)
+ - 5-5) 한정적 와일드카드를 사용해 유연성을 높혀라 (https://nankisu.tistory.com/131)
+ - 5-6) 제네릭과 가변인수를 함께 쓸 때는 신중하라 (https://nankisu.tistory.com/132)
+ - 5-7) 타입 안전 이종 컨테이너를 고려하라 (https://nankisu.tistory.com/133)
 
 
 ### 기타
